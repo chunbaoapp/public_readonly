@@ -2,6 +2,7 @@ package chunbao.nl.event.readonly.controller;
 
 import chunbao.nl.event.module.GuiUser;
 import chunbao.nl.event.readonly.dao.GuiUserRepo;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,10 +17,11 @@ public class UserController {
 
   @GetMapping(value = "/{username}", produces = "application/json")
   public GuiUser getUser(@PathVariable String username) {
-    GuiUser myUser = new GuiUser();
-    myUser.setUsername(username);
-    myUser.setPassword("PW:" + username);
-    guiUserRepo.save(myUser);
-    return myUser;
+    Optional<GuiUser> optional = guiUserRepo.findById(username);
+    if (optional.isPresent()) {
+      return optional.get();
+    } else {
+      return null;
+    }
   }
 }
