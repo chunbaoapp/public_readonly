@@ -1,7 +1,7 @@
 package chunbao.nl.event.readonly.controller;
 
+import chunbao.nl.event.dao.GuiUserRepo;
 import chunbao.nl.event.module.GuiUser;
-import chunbao.nl.event.module.GuiUserRepo;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
